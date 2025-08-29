@@ -88,6 +88,26 @@ body {
     transform: scale(1.1);
 }
 
+/* Estilos para o WhatsApp Flutuante */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.floating-whatsapp-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.floating-whatsapp-icon:hover {
+    transform: scale(1.1);
+}
+
 /* Estilos de Tipografia */
 h1, h2, h3 {
     font-weight: 600;
@@ -131,7 +151,7 @@ p {
 /* Seção Principal com Imagem de Fundo */
 .hero-image {
     position: relative;
-    padding: 180px 0; /* AUMENTADO PARA EMPURRAR O CONTEÚDO PARA BAIXO */
+    padding: 180px 0;
     color: white;
     text-align: center;
     overflow: hidden;
@@ -232,6 +252,26 @@ section {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: var(--primary-color);
+}
+
+/* Seção de Procedimentos */
+.procedimentos {
+    background-color: #fff;
+}
+.procedimento-list ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.procedimento-list ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.procedimento-list ul li:last-child {
+    border-bottom: none;
 }
 
 /* Seção de Artigos/Conteúdo */
@@ -344,14 +384,16 @@ section {
 
 .location-card {
     background-color: var(--bg-light);
-    width: 200px;
+    width: 250px;
     height: 100px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 15px;
 }
 
 .location-card:hover {
@@ -365,6 +407,7 @@ section {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -373,6 +416,12 @@ section {
     font-size: 1.3rem;
     margin: 0;
     color: var(--primary-color);
+}
+
+.location-pin {
+    font-size: 1.5rem;
+    color: red;
+    margin-top: 5px;
 }
 
 /* Estilos para a página de detalhes de local */
@@ -387,93 +436,79 @@ section {
     text-align: center;
 }
 
-/* Detalhes do cartão - Imagem à esquerda, texto à direita */
-.detail-card {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
+.location-details .container {
+    max-width: 800px;
+}
+
+/* Layout de 2 colunas: imagem à esquerda e texto à direita */
+.detail-content {
     display: flex;
-    gap: 30px; /* Espaço entre a imagem e as informações */
-    align-items: flex-start; /* Alinha o conteúdo ao topo */
-    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
-}
-
-.location-image {
-    width: 100%;
-    max-width: 400px; /* Largura máxima para a imagem */
-    height: auto;
-    border-radius: 8px;
-    flex-shrink: 0; /* Impede que a imagem encolha */
-}
-
-.info {
-    flex: 1; /* Ocupa o espaço restante */
-    min-width: 280px; /* Largura mínima para o bloco de texto */
-    text-align: left;
-}
-
-.info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-.service-type {
-    font-weight: bold;
-    color: var(--accent-color);
-}
-
-/* Container de convênios - imagem e info */
-.convenios-container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    margin-top: 30px;
-    display: flex;
-    gap: 30px;
-    align-items: center; /* Alinha verticalmente os itens no centro */
     flex-wrap: wrap;
-    justify-content: center; /* Centraliza em telas pequenas */
-}
-
-.info-convenio-container {
-    flex: 1;
-    min-width: 250px; /* Garante que o texto tenha espaço mínimo */
+    gap: 30px;
+    align-items: flex-start;
     text-align: left;
 }
 
-.info-convenio-container h3 {
-    text-align: left;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.convenios-image {
+.detail-content .location-image {
     width: 100%;
-    max-width: 350px; /* Nova largura máxima para a imagem de convênios */
+    max-width: 350px;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    flex-shrink: 0;
+}
+
+.detail-content .info {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* Estilo para a seção de convênios com foto */
+.convenios-section {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: var(--bg-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+}
+
+.convenios-section .convenios-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.convenios-section .info {
+    text-align: center;
 }
 
 .map-container {
-    background-color: var(--bg-light);
+    margin-top: 40px;
     padding: 30px;
+    background-color: var(--bg-light);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    margin-top: 30px;
-    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .map-container h3 {
     margin-bottom: 20px;
+    text-align: center;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+    border-radius: 8px;
 }
 
 .map-button {
     display: inline-block;
+    margin-top: 20px;
     background-color: var(--primary-color);
     color: #fff;
     padding: 12px 25px;
@@ -556,38 +591,30 @@ footer a:hover {
         margin-left: 0;
         justify-content: center;
     }
-
     h1 {
         font-size: 2.5rem;
     }
-
     h2 {
         font-size: 1.8rem;
     }
-
     .hero-image {
         padding: 80px 0;
     }
-
     .hero-content {
         margin-top: 150px;
     }
-
     .about-content {
         flex-direction: column;
         text-align: center;
     }
-
     .profile-pic {
         margin-bottom: 20px;
         width: 200px;
         height: 200px;
     }
-
     section {
         padding: 50px 0;
     }
-
     .service-cards, .article-cards, .testimonial-cards, .location-cards {
         grid-template-columns: 1fr;
     }
@@ -595,31 +622,21 @@ footer a:hover {
         width: 100%;
         height: 80px;
     }
-
     .cta-button, .nav-cta-button, .map-button {
         padding: 12px 25px;
         font-size: 0.9rem;
     }
-
     .detail-card {
-        flex-direction: column; /* Em telas menores, a imagem e o texto ficam em coluna */
-        align-items: center; /* Centraliza a imagem e o texto */
+        flex-direction: column;
+        align-items: center;
     }
-
     .info {
-        text-align: center; /* Centraliza o texto em telas menores */
-    }
-
-    .convenios-container {
-        flex-direction: column-reverse; /* Coloca a imagem acima do texto em telas pequenas */
         text-align: center;
     }
-
-    .info-convenio-container {
-        text-align: center;
+    .convenios-section {
+        flex-direction: column-reverse;
     }
 }
-
 @media (max-width: 480px) {
     h1 {
         font-size: 2rem;
@@ -629,5 +646,9 @@ footer a:hover {
     }
     .hero-content {
         margin-top: 100px;
+    }
+    .floating-whatsapp-icon {
+        width: 50px;
+        height: 50px;
     }
 }
